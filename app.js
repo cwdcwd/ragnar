@@ -1,3 +1,4 @@
+var config = require('./config');
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -12,10 +13,10 @@ var router = express.Router();
 
 
 passport.use(new ForceDotComStrategy({
-  clientID: '{client_id}',
-  clientSecret: '{client_secret}',
-  scope: ['id','chatter_api'],
-  callbackURL: 'https://my.example.com/auth/forcedotcom/callback'
+  clientID: config.CLIENT_ID,
+  clientSecret: config.CLIENT_SECRET,
+  scope: ['id','api'],
+  callbackURL: config.CALLBACK_URL
 }, function verify(token, refreshToken, profile, done) {
   console.log(profile);
   return done(null, profile);
